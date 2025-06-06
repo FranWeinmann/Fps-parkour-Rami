@@ -5,17 +5,26 @@ using UnityEngine;
 public class MoneyManager : MonoBehaviour
 {
     public float money;
+    public UIManager uimanager;
 
-    public void UpdateMoney(float amount)
+    void Start()
+    {
+        uimanager = FindObjectOfType<UIManager>(); // FindFirstObjectByType para la 2022
+    }
+
+    public bool UpdateMoney(float amount)
     {
         if (money + amount < 0)
         {
             // Impedir la compra
             Debug.Log("Dinero insuficiente");
+            return false;
         }
         else
         {
             money += amount;
+            uimanager.UpdateMoneyText(money.ToString());
+            return true;
         }
     }
 }
