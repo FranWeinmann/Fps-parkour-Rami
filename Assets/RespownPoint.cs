@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class RespownPoint : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+
+    public string zone;
+
+    void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Trigger Enter con: " + other.name);
-        PlayerRespawn playerRespawn = other.GetComponent<PlayerRespawn>();
-            Debug.Log("Jugador detectado, actualizando respawn point.");
-            playerRespawn.SetRespawnPoint(transform.position);
+        zone = "New";
     }
 
 }

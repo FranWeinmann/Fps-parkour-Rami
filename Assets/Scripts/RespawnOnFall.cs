@@ -6,18 +6,27 @@ using UnityEngine.SceneManagement;
 public class RespawnOnFall : MonoBehaviour
 {
     public float yRespawn;
-    // Start is called before the first frame update
+    public RespownPoint respawnPoint;
+    public Transform SpawnPoint;
+
     void Start()
     {
-        
+        respawnPoint = FindObjectOfType<RespownPoint>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < yRespawn) {
-            //Debug.Log("me caí");
-            SceneManager.LoadScene("Fps");
-        } 
+        if (transform.position.y < yRespawn)
+        {
+            // Aquí leemos la variable zone directamente
+            if (respawnPoint.zone == "New")
+            {
+                transform.position = SpawnPoint.position;
+            }
+            else
+            {
+                SceneManager.LoadScene("Fps");
+            }
+        }
     }
 }
